@@ -35,6 +35,8 @@ def is_bucket_exist(bname):
         return False
 
 @with_setup(setUp, tearDown)
+
+@attr(tags=[tag.DATA_PLANE, tag.OBJECT_IO])
 def test_create_bucket():
     print "Trying to create bucket:", bucket_name
     # Any error will be raised as exception
