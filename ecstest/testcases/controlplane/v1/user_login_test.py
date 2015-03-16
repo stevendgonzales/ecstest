@@ -22,7 +22,7 @@ LOGIN_SCHEMA = {
 
 
 @attr(tags=[tag.CONTROL_PLANE, tag.AUTH])
-class TestUserLogin(testbase.EcsTestBase):
+class TestUserLogin(testbase.EcsControlPlaneClient):
 
     def setUp(self):
         super(TestUserLogin, self).setUp()

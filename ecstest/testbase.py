@@ -5,10 +5,27 @@ from ecstest.extensions import matchers
 
 
 class EcsTestBase(testtools.TestCase):
+    """Generic TestBase class. Shall not use it but one of its subclass
+    """
     def setUp(self):
         super(EcsTestBase, self).setUp()
 
         cfg = config.get_config()
+
+    def assertJsonSchema(self, expected, observed, message=''):
+        """Assert that 'expected' is equal to 'observed'.
+        :param expected: The expected value.
+        :param observed: The observed value.
+        :param message: An optional message to include in the error.
+        """
+        matcher = matchers.JsonSchemaMatcher(expected)
+        self.assertThat(observed, matcher, message)
+
+class EcsControlPlaneTestBase(EcsTestBase):
+    """Subclass for testing control plane
+    """
+    def setUp(self):
+        super(EcsControlPlaneTestBase, self).setUp()
 
         self.controlplane_client = client.EcsControlPlaneClient(
             username=cfg['ADMIN_USERNAME'],
@@ -21,11 +38,3 @@ class EcsTestBase(testtools.TestCase):
             request_timeout=cfg['REQUEST_TIMEOUT'],
             cache_token=cfg['CACHE_TOKEN'])
 
-    def assertJsonSchema(self, expected, observed, message=''):
-        """Assert that 'expected' is equal to 'observed'.
-        :param expected: The expected value.
-        :param observed: The observed value.
-        :param message: An optional message to include in the error.
-        """
-        matcher = matchers.JsonSchemaMatcher(expected)
-        self.assertThat(observed, matcher, message)
