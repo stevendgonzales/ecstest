@@ -3,5 +3,5 @@
 AUTH = 'auth'
 CONTROL_PLANE = 'controlplane'
 DATA_PLANE = 'dataplane'
-OBJECT_IO = 'objctio'
+OBJECT_IO = 'objectio'
 
