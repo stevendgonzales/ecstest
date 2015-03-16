@@ -35,8 +35,7 @@ def is_bucket_exist(bname):
         return False
 
 @with_setup(setUp, tearDown)
-
-@attr(tags=[tag.DATA_PLANE, tag.OBJECT_IO])
+@attr(tags=[tag.DATA_PLANE, tag.BUCKET_MGMT])
 def test_create_bucket():
     print "Trying to create bucket:", bucket_name
     # Any error will be raised as exception
@@ -49,7 +48,10 @@ def test_create_bucket():
         print "Bucket", bucket_name, "does NOT exist!!!"
         assert False
 
+@with_setup(setUp, tearDown)
+@attr(tags=[tag.DATA_PLANE, tag.BUCKET_MGMT])
 def test_remove_empty_bucket():
+    print "Delete bucket:", bucket_name
     # Any error will be raised as exception
     conn.delete_bucket(bucket_name)
     # Verify the bucket is deleted
