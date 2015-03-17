@@ -25,6 +25,6 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
         # Delete the bucket
         logger.info("Trying to delete the bucket %s", bucket_name)
         self.data_conn.delete_bucket(bucket_name)
-        # Verify the bucket is deleted
 
-        # self.assertRaises(S3ResponseError, self.data_conn.get_bucket, bucket_name)
+        # Verify the bucket is deleted
+        self.assertRaises(S3ResponseError, self.data_conn.get_bucket, bucket_name)
