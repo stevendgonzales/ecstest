@@ -1,6 +1,7 @@
 from nose.plugins.attrib import attr
 from ecstest import config, constants, tag, testbase
 from ecstest.logger import logger
+from boto.exception import S3ResponseError
 import random
 
 
@@ -26,4 +27,4 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
         self.data_conn.delete_bucket(bucket_name)
         # Verify the bucket is deleted
 
-        # self.assertRaise(self.data_conn.get_bucket(bucket_name))
+        # self.assertRaises(S3ResponseError, self.data_conn.get_bucket, bucket_name)
