@@ -31,7 +31,8 @@ class TestUserLogin(testbase.EcsControlPlaneTestBase):
         self.expected_token_length = 164
 
     def test_login_returns_successful(self):
-        """Test that a valid login returns a 200,
+        """JIRA ID: ESCTEST-44
+        Test that a valid login returns a 200,
         the proper json schema, and an access token in the header.
         """
 
@@ -53,7 +54,8 @@ class TestUserLogin(testbase.EcsControlPlaneTestBase):
                          len(response.headers['x-sds-auth-token']))
 
     def test_login_returns_401_on_bad_creds(self):
-        """Test that a failed login returns a 401,
+        """JIRA ID: ECSTEST-4
+        Test that a failed login returns a 401,
         and does not provide a token.
         """
 

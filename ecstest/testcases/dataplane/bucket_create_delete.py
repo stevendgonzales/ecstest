@@ -10,9 +10,9 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
     def setUp(self):
         super(TestBucketCreateDelete, self).setUp()
 
-    def test_create_delete(self):
+    def create_delete_bucket(self, bucket_name):
         """Create a bucket, then delete it."""
-        bucket_name='test_bucket_' + str(random.randint(1000, 2000))
+
         logger.info("Trying to create bucket: %s", bucket_name)
         # Any error will be raised as exception
         bucket = self.data_conn.create_bucket(bucket_name)
@@ -28,3 +28,31 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
 
         # Verify the bucket is deleted
         self.assertRaises(S3ResponseError, self.data_conn.get_bucket, bucket_name)
+
+    def test_create_delete(self):
+        """JIRA ID: ESCTEST-6 ESCTEST-7"""
+        bucket_name = 'test_bucket_' + str(random.randint(1000, 2000))
+        self.create_delete_bucket(bucket_name)
+
+    def test_create_delete_shortest_name(self):
+        """JIRA ID: ESCTEST-6 ESCTEST-7"""
+        # TODO
+        pass
+
+    def test_create_delete_longest_name(self):
+        """JIRA ID: ESCTEST-6 ESCTEST-7"""
+        # TODO
+        pass
+
+    def test_create_delete_with_dot_underscore_hyphen(self):
+        """JIRA ID: ESCTEST-6 ESCTEST-7"""
+        # TODO
+        pass
+
+class TestBucketCreateNegative(testbase.EcsDataPlaneTestBase):
+    """For negative create"""
+    pass
+
+class TestBucketDeleteNegative(testbase.EcsDataPlaneTestBase):
+    """For negative delete"""
+    pass
