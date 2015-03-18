@@ -14,19 +14,15 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
         """Create a bucket, then delete it."""
 
         logger.info("Trying to create bucket: %s", bucket_name)
-        # Any error will be raised as exception
         bucket = self.data_conn.create_bucket(bucket_name)
-        # Verify the bucket is created
-        # Any error will be raised as exception
+        
         logger.info("Check whether bucket %s exists", bucket_name)
         buck = self.data_conn.get_bucket(bucket_name)
         self.assertTrue(buck)
 
-        # Delete the bucket
         logger.info("Trying to delete the bucket %s", bucket_name)
         self.data_conn.delete_bucket(bucket_name)
 
-        # Verify the bucket is deleted
         self.assertRaises(S3ResponseError, self.data_conn.get_bucket, bucket_name)
 
     def test_create_delete(self):
