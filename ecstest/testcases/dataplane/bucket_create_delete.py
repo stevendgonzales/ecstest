@@ -49,3 +49,10 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
         # TODO
         pass
 
+class TestBucketCreateNegative(testbase.EcsDataPlaneTestBase):
+    """For negative create"""
+    pass
+
+class TestBucketDeleteNegative(testbase.EcsDataPlaneTestBase):
+    """For negative delete"""
+    pass
