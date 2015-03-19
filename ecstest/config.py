@@ -19,7 +19,7 @@ def get_config():
         'TOKEN_FILENAME': env.get('TOKEN_FILENAME', '/tmp/ecstest.token'),
         'CACHE_TOKEN': bool(int(env.get('CACHE_TOKEN', 1))),
         'ACCESS_SERVER': env.get('ACCESS_SERVER', 'localhost'),
-        'ACCESS_PORT': env.get('ACCESS_PORT', 3128),
+        'ACCESS_PORT': int(env.get('ACCESS_PORT', 3128)),
         'ACCESS_KEY': env.get('ACCESS_KEY', 'mykey'),
         'ACCESS_SECRET': env.get('ACCESS_SECRET', 'mysecret'),
         'ACCESS_BUCKET': env.get('ACCESS_BUCKET', 'mybucket')
