@@ -45,10 +45,12 @@ class TestBucketCreateDelete(testbase.EcsDataPlaneTestBase):
         # TODO
         pass
 
+@attr(tags=[tag.DATA_PLANE, tag.BUCKET_MGMT])
 class TestBucketCreateNegative(testbase.EcsDataPlaneTestBase):
     """For negative create"""
     pass
 
+@attr(tags=[tag.DATA_PLANE, tag.BUCKET_MGMT])
 class TestBucketDeleteNegative(testbase.EcsDataPlaneTestBase):
     """For negative delete"""
     pass
