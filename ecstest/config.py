@@ -21,5 +21,6 @@ def get_config():
         'ACCESS_SERVER': env.get('ACCESS_SERVER', 'localhost'),
         'ACCESS_PORT': int(env.get('ACCESS_PORT', 3128)),
         'ACCESS_KEY': env.get('ACCESS_KEY', 'mykey'),
-        'ACCESS_SECRET': env.get('ACCESS_SECRET', 'mysecret')
+        'ACCESS_SECRET': env.get('ACCESS_SECRET', 'mysecret'),
+        'ECSTEST_VERBOSE_OUTPUT': env.get('ECSTEST_VERBOSE_OUTPUT', None)
     }
