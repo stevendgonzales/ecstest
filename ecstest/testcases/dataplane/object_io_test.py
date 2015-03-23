@@ -24,8 +24,8 @@ class TestObjectPostGetDelete(testbase.EcsDataPlaneTestBase):
         content = 'This the the content of test_key_1'
         k.set_contents_from_string(content)
 
-        content_2 = k.get_contents_as_string()
-        self.assertEqual(content, content_2)
+        content_ret = k.get_contents_as_string()
+        self.assertEqual(content, content_ret)
 
         k.delete()
         self.assertRaises(S3ResponseError, k.get_contents_as_string, None)
