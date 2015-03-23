@@ -3,3 +3,4 @@ nose
 requests
 six
 testtools
+boto
