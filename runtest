@@ -1,0 +1,86 @@
+#!/bin/bash
+
+
+usage() {
+    cat << END
+Usage:
+  sh$ runtest [-c <config file>] [-t <tag>] [--verbose] [<case>|<dir>]
+
+  Examples:
+    ./runtest 
+      This command runs all cases
+
+    ./runtest object_io_test.py
+      This command runs a single case object_io_test.py.
+      Full path is not needed here. The program will find the file automatically.
+
+    ./runtest dataplane
+      Or run all cases under a directory
+
+    ./runtest object_io_*
+      Wildcard is supported.
+
+    ./runtest -c fakes3.cfg
+      Change config information (account, endpoint, etc.) on the fly
+
+    ./runtest -t objectio
+      Specify tags on the fly
+
+    ./runtest --verbose
+      Print debug level log messages
+
+    ./runtest -c awss3.cfg -t objectio --verbose dataplane
+      Compose parameters
+
+END
+}
+
+CONFIG_FILE=default.cfg
+
+OPTS=`getopt -o c:t:h --long config,tags,verbose,help -- "$@"`
+while true; do
+    case "$1" in
+        -c|--config)
+            CONFIG_FILE=$2
+            shift 2;;
+        -t|--tag)
+            TAGS=$2
+            shift 2;;
+        --verbose)
+            export ECSTEST_VERBOSE_OUTPUT=1
+            shift;;
+        --)
+            shift
+            break;;
+        -h|--help)
+            usage
+            exit 0;;
+        *)
+            break;;
+    esac
+done
+
+echo "===================================="
+echo "Config file : $CONFIG_FILE"
+echo "Tags        : $TAGS"
+echo "Verbose     : $ECSTEST_VERBOSE_OUTPUT"
+echo "Case/dir    : $1"
+echo "===================================="
+
+source config/$CONFIG_FILE || exit 1
+
+NOSECMD="nosetests --nocapture"
+if [ -n "$TAGS" ]; then
+    NOSECMD="$NOSECMD -a tags=$TAGS"
+fi
+
+if [ -n "$1" ]; then
+    for c in `find . -name $1 ! -name '*.pyc'`; do
+        echo "Run case(s): $c..."
+        $NOSECMD $c
+    done
+else
+    echo "Run all cases..."
+    $NOSECMD
+fi
+
