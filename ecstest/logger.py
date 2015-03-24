@@ -11,7 +11,7 @@ def getLogger():
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(logging.Formatter(formatter))
     log_level = logging.INFO
-    verbose = cfg['ECSTEST_VERBOSE_OUTPUT']
+    verbose = cfg['VERBOSE_OUTPUT']
     if verbose:
         log_level = logging.DEBUG
     console_handler.setLevel(log_level)
