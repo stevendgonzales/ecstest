@@ -18,6 +18,7 @@ def get_config():
         'REQUEST_TIMEOUT': float(env.get('REQUEST_TIMEOUT', 15.0)),
         'TOKEN_FILENAME': env.get('TOKEN_FILENAME', '/tmp/ecstest.token'),
         'CACHE_TOKEN': bool(int(env.get('CACHE_TOKEN', 1))),
+        'ACCESS_SSL': bool(env.get('ACCESS_SSL', None)),
         'ACCESS_SERVER': env.get('ACCESS_SERVER', 'localhost'),
         'ACCESS_PORT': int(env.get('ACCESS_PORT', 3128)),
         'ACCESS_KEY': env.get('ACCESS_KEY', 'mykey'),
