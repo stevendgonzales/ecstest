@@ -49,7 +49,7 @@ class EcsDataPlaneTestBase(EcsTestBase):
         self.data_conn = S3Connection(
             aws_access_key_id=cfg['ACCESS_KEY'],
             aws_secret_access_key=cfg['ACCESS_SECRET'],
-            is_secure=False,
+            is_secure=cfg['ACCESS_SSL'],
             port=cfg['ACCESS_PORT'],
             host=cfg['ACCESS_SERVER'],
             calling_format=OrdinaryCallingFormat())
